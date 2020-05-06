@@ -2,19 +2,22 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import Button from "../components/Button"
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    <h1>Welcome to Unfilter</h1>
+    <p>
+      Not everything on your mind is public. But, that doesn’t mean it be part
+      of your timeline…
+    </p>
+    <p>
+      Unfilter is your online diary, you can choose to share a piece of you or
+      not, the decision is yours.
+    </p>
+    <Button to="/join-waiting-list/">Join today</Button>
   </Layout>
 )
 
