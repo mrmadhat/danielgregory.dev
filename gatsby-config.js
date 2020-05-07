@@ -8,6 +8,15 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
     {
+      resolve: "gatsby-plugin-fathom",
+      options: {
+        // Unique site id
+        siteId: "QESCFHHW",
+        // Domain whitelist
+        whitelistHostnames: ["unfilter.life", "www.unfilter.life"],
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
