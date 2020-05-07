@@ -1,4 +1,5 @@
 import { Link } from "gatsby"
+import { Location } from "@reach/router"
 import PropTypes from "prop-types"
 import React from "react"
 import { rhythm } from "../theme/typography"
@@ -30,20 +31,26 @@ const Header = ({ siteTitle }) => {
               />
             </Link>
           </HeaderCol>
-          {isHome && (
-            <HeaderCol>
-              <Link
-                to="/join-waiting-list"
-                style={{
-                  fontSize: "18px",
-                  fontStyle: "italic",
-                  color: "#7F7F7F",
-                }}
-              >
-                Login
-              </Link>
-            </HeaderCol>
-          )}
+          <Location>
+            {({ location }) => (
+              <>
+                {location.pathname === "/" && (
+                  <HeaderCol>
+                    <Link
+                      to="/join-waiting-list"
+                      style={{
+                        fontSize: "18px",
+                        fontStyle: "italic",
+                        color: "#7F7F7F",
+                      }}
+                    >
+                      Login
+                    </Link>
+                  </HeaderCol>
+                )}
+              </>
+            )}
+          </Location>
         </div>
       </div>
     </header>
