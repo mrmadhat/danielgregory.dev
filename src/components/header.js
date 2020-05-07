@@ -9,9 +9,7 @@ const HeaderCol = ({ children }) => (
   <div className="col-auto d-flex align-items-center">{children}</div>
 )
 
-const Header = ({ siteTitle }) => {
-  const isHome = window.location.pathname === "/"
-
+const Header = () => {
   return (
     <header>
       <div
