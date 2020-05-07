@@ -3,61 +3,11 @@ import { Link } from "gatsby"
 import { useForm } from "react-hook-form"
 
 import { rhythm } from "../theme/typography"
+import { useFetch } from "../hooks/useFetch"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Button from "../components/Button"
-
-function fetchReducer(state, { type, response, error }) {
-  switch (type) {
-    case "fetching": {
-      return { error: null, response: null, pending: true }
-    }
-    case "success": {
-      return { error: null, response, pending: false }
-    }
-    case "error": {
-      return { error, response: null, pending: false }
-    }
-    default:
-      throw new Error(`Unsupported type: ${type}`)
-  }
-}
-
-function useFetch({ url, body }) {
-  const [state, dispatch] = React.useReducer(fetchReducer, {
-    error: null,
-    response: null,
-    pending: false,
-  })
-  const bodyString = JSON.stringify(body)
-
-  React.useEffect(() => {
-    if (url && bodyString) {
-      console.log(bodyString)
-      console.log("got here")
-      dispatch({ type: "fetching" })
-      fetch(url, {
-        method: "post",
-        body: bodyString,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then(r => r.json())
-        .then(
-          response => {
-            console.log(response)
-            return dispatch({ type: "success", response })
-          },
-          error => dispatch({ type: "error", error })
-        )
-    }
-  }, [url, bodyString])
-
-  return state
-}
 
 const formStyle = {
   maxWidth: 400,
