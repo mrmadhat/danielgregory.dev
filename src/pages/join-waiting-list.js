@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
 import { useForm } from "react-hook-form"
 
 import { rhythm } from "../theme/typography"
