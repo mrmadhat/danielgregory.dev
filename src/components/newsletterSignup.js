@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 
 import styled from "@emotion/styled"
 import { rhythm } from "../../site/typography"
 import { useFetch } from "../hooks/useFetch"
 
-import Button from "../components/Button"
+import Button from "./button"
 
 const formStyle = {
   maxWidth: 600,
@@ -89,7 +89,7 @@ const NewsletterSignup = () => {
   const [formData, setFormData] = useState()
 
   const { pending, response, error } = useFetch({
-    url: `https://app.convertkit.com/forms/1373610/subscriptions`,
+    url: `https://app.convertkit.com/forms/1400351/subscriptions`,
     body: formData,
   })
 
