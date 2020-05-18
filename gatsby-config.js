@@ -1,48 +1,149 @@
-module.exports = {
-  siteMetadata: {
-    title: `Unfilter`,
-    description: `Unfilter is your online diary. You can choose to share a piece of you or not, the decision is yours.`,
-    author: `Daniel Gregory`,
+const site = require("./site/config")
+
+/**
+ * Information about the site
+ */
+
+const siteMetadata = {
+  title: site.title,
+  description: site.description,
+  author: {
+    name: site.author.name,
+    miniBio: site.author.description,
   },
+  keywords: site.keywords,
+  canonicalUrl: site.siteUrl,
+  image: site.siteLogo,
+  organization: {
+    name: site.organization,
+    url: site.siteUrl,
+    logo: site.siteLogo,
+  },
+  social: {
+    twitter: site.twitterHandle,
+    fbAppID: "",
+  },
+}
+
+const manifest = {
+  resolve: `gatsby-plugin-manifest`,
+  options: {
+    name: site.title,
+    short_name: site.shortTitle,
+    start_url: `/`,
+    background_color: site.theme.color.primaryBg,
+    theme_color: site.theme.color.accent,
+    display: `minimal-ui`,
+    icon: site.icon,
+  },
+}
+
+/**
+ * Site Content
+ */
+const fileSystem = [
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `images`,
+      path: `${__dirname}/src/images`,
+    },
+  },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `images`,
+      path: `${__dirname}/src/pages`,
+    },
+  },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `articles`,
+      path: `${__dirname}/content/articles`,
+    },
+  },
+]
+
+const content = [
+  `gatsby-plugin-catch-links`,
+  {
+    resolve: `gatsby-plugin-mdx`,
+    options: {
+      extensions: [`.mdx`, `.md`],
+      defaultLayouts: {
+        default: `${__dirname}/src/templates/markdown-page.js`,
+      },
+      gatsbyRemarkPlugins: [
+        { resolve: "gatsby-remark-vscode" },
+        {
+          resolve: "gatsby-remark-images",
+          options: {
+            backgroundColor: site.theme.color.primaryBg,
+            maxWidth: 1035,
+          },
+        },
+        {
+          resolve: "gatsby-remark-copy-linked-files",
+          options: {
+            ignoreFileExtensions: [],
+          },
+        },
+      ],
+    },
+  },
+]
+/**
+ * Visitor data and seo
+ */
+const analytics = {
+  resolve: "gatsby-plugin-fathom",
+  options: {
+    siteId: "AGKSAWUQ",
+    whitelistHostnames: ["danielgregory.dev", "www.danielgregory.dev"],
+  },
+}
+
+const seo = `gatsby-plugin-react-helmet`
+
+/**
+ * Themeing
+ */
+const styling = [
+  `gatsby-plugin-emotion`,
+  `gatsby-plugin-nprogress`,
+  {
+    resolve: `gatsby-plugin-typography`,
+    options: {
+      pathToConfigModule: `site/typography`,
+    },
+  },
+]
+
+const images = [
+  `gatsby-transformer-sharp`,
+  `gatsby-plugin-sharp`,
+  {
+    resolve: "gatsby-remark-images",
+    options: {
+      backgroundColor: site.theme.color.primaryBg,
+      maxWidth: 1035,
+    },
+  },
+]
+
+module.exports = {
+  siteMetadata,
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sass`,
-    {
-      resolve: "gatsby-plugin-fathom",
-      options: {
-        // Unique site id
-        siteId: "QESCFHHW",
-        // Domain whitelist
-        whitelistHostnames: ["unfilter.life", "www.unfilter.life"],
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `unfilter`,
-        short_name: `Unfilter`,
-        start_url: `/`,
-        background_color: `#FFF8F2`,
-        theme_color: `#424242`,
-        display: `minimal-ui`,
-        icon: `src/images/unfilter-icon.png`, // This path is relative to the root of the site.
-      },
-    },
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/theme/typography`,
-      },
-    },
+    seo,
+    analytics,
+    manifest,
+    ...content,
+    ...fileSystem,
+    ...styling,
+    ...images,
+
+    // TODO
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

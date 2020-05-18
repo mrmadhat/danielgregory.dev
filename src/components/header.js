@@ -1,66 +1,73 @@
-import { Link } from "gatsby"
-import { Location } from "@reach/router"
-import PropTypes from "prop-types"
 import React from "react"
-import { rhythm } from "../theme/typography"
-import unfilterLogo from "../images/unfilter-logo.svg"
+import { Link as GatsbyLink } from "gatsby"
 
-const HeaderCol = ({ children }) => (
-  <div className="col-auto d-flex align-items-center">{children}</div>
+import { rhythm } from "../../site/typography"
+import { css } from "@emotion/core"
+
+import site from "../../site/config"
+import { Container, Row, Col } from "./grid"
+import Logo from "./logo"
+
+const containerCss = css`
+  margin-top: ${rhythm(1.5)};
+  margin-bottom: ${rhythm(1)};
+`
+
+const NavCol = ({ children }) => (
+  <Col
+    css={css`
+      flex-direction: row;
+      align-items: center;
+    `}
+  >
+    {children}
+  </Col>
 )
+
+const Link = props => (
+  <GatsbyLink
+    css={css`
+      margin-right: 30px;
+      color: ${site.theme.color.secondary};
+      font-weight: 300;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    `}
+    {...props}
+  />
+)
+
+const activeLinkStyle = { color: site.theme.color.accent }
 
 const Header = () => {
   return (
     <header>
-      <div
-        className="container"
-        style={{
-          marginTop: rhythm(1.5),
-          marginBottom: rhythm(1),
-        }}
-      >
-        <div className="row justify-content-between">
-          <HeaderCol>
-            <Link to="/">
-              <img
-                src={unfilterLogo}
-                alt="Unfilter Logo"
-                style={{ marginBottom: 0 }}
-              />
+      <Container css={containerCss}>
+        <Row>
+          <Col>
+            <Link
+              to="/"
+              css={css`
+                color: ${site.theme.color.secondary};
+              `}
+            >
+              <Logo />
             </Link>
-          </HeaderCol>
-          <Location>
-            {({ location }) => (
-              <>
-                {location.pathname === "/" && (
-                  <HeaderCol>
-                    <Link
-                      to="/join-waiting-list"
-                      style={{
-                        fontSize: "18px",
-                        fontStyle: "italic",
-                        color: "#7F7F7F",
-                      }}
-                    >
-                      Login
-                    </Link>
-                  </HeaderCol>
-                )}
-              </>
-            )}
-          </Location>
-        </div>
-      </div>
+          </Col>
+          <NavCol>
+            <Link to="/" activeStyle={activeLinkStyle}>
+              About
+            </Link>
+            <Link to="/articles" activeStyle={activeLinkStyle}>
+              Writing
+            </Link>
+          </NavCol>
+        </Row>
+      </Container>
     </header>
   )
-}
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
 }
 
 export default Header
