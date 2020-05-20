@@ -59,6 +59,7 @@ function ArticlesScreen() {
         <Row>
           <Col
             css={css`
+              width: 100%;
               max-width: 800px;
             `}
           >
