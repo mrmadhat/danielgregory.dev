@@ -20,9 +20,7 @@ const articleStyle = css`
 
 const MTime = styled.time`
   text-align: right;
-  display: block;
   fontsize: 12px;
-  margin-bottom: 10px;
 `
 
 export default function PostPage(props) {
@@ -88,33 +86,24 @@ function Post({ data: { site, mdx } }) {
       </article>
       <Container>
         <Row>
-          <Col>
-            <a href={historyLink}>
-              <MTime title="Last Updated Date">{date}</MTime>
-            </a>
-          </Col>
-        </Row>
-      </Container>
-      <Container>
-        <Row>
-          <Col>
-            <p css={{ textAlign: "right" }}>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                // using mobile.twitter.com because if people haven't upgraded
-                // to the new experience, the regular URL wont work for them
-                href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
-                  articleUrl
-                )}`}
-              >
-                Discuss on Twitter
+          <Col
+            css={css`
+              width: 100%;
+            `}
+          >
+            <div
+              css={css`
+                text-align: right;
+              `}
+            >
+              <a href={historyLink}>
+                <MTime title="Last Updated Date">{date}</MTime>
               </a>
               <span css={{ marginLeft: 10, marginRight: 10 }}>{` • `}</span>
               <a target="_blank" rel="noopener noreferrer" href={editLink}>
                 Edit post on GitHub
               </a>
-            </p>
+            </div>
           </Col>
         </Row>
       </Container>
