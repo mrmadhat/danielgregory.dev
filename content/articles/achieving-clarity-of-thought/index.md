@@ -1,13 +1,14 @@
 ---
 slug: achieving-clarity-of-thought
-date: '2018-11-29'
-title: 'Achieving clarity of thought'
+date: "2018-11-29"
+title: "Achieving clarity of thought"
 description:
-  'Achieving clarity of thought can be immensely difficult at times, it
-  apparently seems the most difficult to achieve when we need it the most.'
-categories: ['productivity']
+  "Achieving clarity of thought can be immensely difficult at times, it
+  apparently seems the most difficult to achieve when we need it the most."
+categories: ["productivity"]
 redirects:
-  - '/thoughts/achieving-clarity-of-thought'
+  - "/thoughts/achieving-clarity-of-thought"
+  - "/achieving-clarity-of-thought"
 ---
 
 Achieving clarity of thought can be immensely difficult at times, it apparently

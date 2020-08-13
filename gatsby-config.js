@@ -11,6 +11,7 @@ const siteMetadata = {
     name: site.author.name,
     miniBio: site.author.description,
   },
+  siteUrl: `https://danielgregory.dev`,
   keywords: site.keywords,
   canonicalUrl: site.siteUrl,
   image: site.siteLogo,
@@ -65,6 +66,17 @@ const fileSystem = [
   },
 ]
 
+const seoPlugins = [
+  `gatsby-plugin-sitemap`,
+  "gatsby-plugin-robots-txt",
+  {
+    resolve: "gatsby-plugin-html-attributes",
+    options: {
+      lang: "en",
+    },
+  },
+]
+
 const content = [
   `gatsby-plugin-catch-links`,
   {
@@ -92,6 +104,7 @@ const content = [
       ],
     },
   },
+  ...seoPlugins,
 ]
 /**
  * Visitor data and seo
