@@ -910,6 +910,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.15.4":
+  version "7.16.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.5.tgz#7f3e34bf8bdbbadf03fbb7b1ea0d929569c9487a"
+  integrity sha512-TXWihFIS3Pyv5hzR7j6ihmeLkZfrXGxAr5UfSl8CHf+6q/wpiYDkUau0czckpYG8QmnCIuPpdLtuA9VmuGGyMA==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/standalone@^7.9.6":
   version "7.9.6"
   resolved "https://registry.yarnpkg.com/@babel/standalone/-/standalone-7.9.6.tgz#7a5f82c6fa29959b12f708213be6de8ec0b79338"
@@ -6160,6 +6167,14 @@ gatsby-plugin-fathom@^1.2.0:
   dependencies:
     "@babel/runtime" "7.1.2"
     react "16.5.2"
+
+gatsby-plugin-google-gtag@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-4.4.0.tgz#0c8a7d72a947989e6a8c9da1417c0fe079b33e52"
+  integrity sha512-pRwm1WV/j29qITeVwoSWOk1R2u42Qp6nzGscwZjAJx8Mx52DeqwL1WeEPAoxIUH+66e7NY+QDinkpGEeJ4xADg==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    minimatch "^3.0.4"
 
 gatsby-plugin-html-attributes@^1.0.5:
   version "1.0.5"
